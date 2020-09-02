@@ -24,3 +24,22 @@ class Score(db.Model):
 
     def __str__(self):
         return f"{self.created} - {self.username} - {self.score}"
+
+def populate_db():
+    if len(Word.query.all()) == 0:
+        word_list = [
+            'lyuk', 'hely', 'folyik', 'boly', 'robaj', 'olaj', 'karaj',
+            'duhaj', 'tolvaj', 'ibolya', 'ajtó', 'papagáj', 'vaj',
+            'gereblye', 'talaj', 'moly', 'zsindely', 'bagoly', 'fejes',
+            'sajt', 'kehely', 'tutaj', 'bojler', 'gólya', 'golyó'
+        ]
+
+        for w in word_list:
+            word_obj = Word(value=w)
+
+            db.session.add(word_obj)
+        db.session.commit()
+
+        return True
+    else:
+        return False
