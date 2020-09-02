@@ -1,0 +1,25 @@
+{% extends "base_template.html" %}
+
+{% block body_block %}
+    <h1>Question {{ data['current'] }} / {{ data['total'] }}</h1>
+    <h2>{{ data['question']['q'] }}</h2>
+
+    <form action="" method="post">
+        {% if data['question']['qm'] == 'is_correct' %}
+            <h3>Is the spelling corrct?</h3>
+            <input type='radio' id='yes' name='answer' value='yes' required/>
+            <label for='yes'>Yes</label>
+            <input type='radio' id='no' name='answer' value='no' required/>
+            <label for='no'>No</label>
+        {% else %}
+            <h3>Please select the correct spelling</h3>
+            <input type='radio' id='j' name='answer' value='j' required/>
+            <label for="j">j</label>
+            <input type='radio' id='ly' name='answer' value='ly' required/>
+            <label for="ly">ly</label>
+        {% endif %}
+        <br>
+        <br>
+        <input type="submit" value="Next"/>
+    </form>
+{% endblock %}

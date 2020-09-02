@@ -1,0 +1,23 @@
+{% extends "base_template.html" %}
+
+{% block body_block %}
+    <h1>Congratulations {{ data['username'] }}!</h1>
+    <h3>Your score is: {{ data['score'] }} point(s) ({{ data['percent']|round(2) }}%)</h3>
+
+    <h3>Here are the top results!</h3>
+    <table border=1>
+        <thead>
+            <td>Name</td>
+            <td>Score</td>
+            <td>Date</td>
+        </thead>
+        {% for row in data['top'] %}
+            <tr>
+                <td>{{ row.username }}</td>
+                <td>{{ row.percent }}</td>
+                <td>{{ row.created }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <p><a href="{{ url_for('quiz.index') }}">Click here to restart</a></p>
+{% endblock %}
