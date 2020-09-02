@@ -16,6 +16,11 @@ class TestIndexPage(unittest.TestCase):
         self.app_context = self.app.app_context()
         self.app_context.push()
 
+    def tearDown(self):
+        db.session.remove()
+        db.drop_all()
+        self.app_context.pop()
+
     def test_index(self):
         tester = self.app.test_client()    
         response = tester.get('/')
